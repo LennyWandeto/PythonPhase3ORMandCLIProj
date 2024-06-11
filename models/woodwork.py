@@ -1,5 +1,4 @@
-from __init__ import CONN, CURSOR
-from set import create_tables
+from models.__init__ import CONN, CURSOR
 class Woodwork:
     def __init__(self, name, type, price, carpenter_id=None):
         self.name = name
@@ -32,16 +31,26 @@ class Woodwork:
     @classmethod
     def get_by_carpenter(cls, carpenter_name):
         CURSOR.execute("""
-            SELECT *
+            SELECT woodwork.name, woodwork.type
             FROM woodwork
             LEFT JOIN carpenters
-            ON carpenter.name = ?
+            ON carpenters.name = ?
         """, (carpenter_name,))
         return CURSOR.fetchall()
     
     @classmethod
-    def delete_by_id(cls, id):
-        CURSOR.execute('DELETE FROM woodwork WHERE id =?', (id,))
+    def get_by_owner(cls, owner_name):
+        CURSOR.execute("""
+            SELECT woodwork.name, woodwork.type
+            FROM woodwork
+            LEFT JOIN owners
+            ON owners.name =?
+        """, (owner_name,))
+        return CURSOR.fetchall()
+    
+    @classmethod
+    def delete_woodwork(cls, name):
+        CURSOR.execute('DELETE FROM woodwork WHERE name =?', (name,))
         CONN.commit()
     
     @classmethod
@@ -54,3 +63,8 @@ class Woodwork:
         CURSOR.execute('UPDATE woodwork SET carpenter_id =? WHERE id =?', (carpenter_id, woodwork_id))
         CONN.commit()
     
+    @classmethod
+    def assign_woodwork_to_owner(cls, woodwork_id, owner_id):
+        CURSOR.execute('UPDATE woodwork SET owner_id =? WHERE id =?', (owner_id, woodwork_id))
+        CONN.commit()
+

@@ -1,4 +1,4 @@
-from __init__ import CONN, CURSOR
+from models.__init__ import CONN, CURSOR
 
 class Owner:
     def __init__(self, name, description):
@@ -15,6 +15,11 @@ class Owner:
     @classmethod
     def get_by_id(cls, id):
         CURSOR.execute('SELECT * FROM owners WHERE id =?', (id,))
+        return CURSOR.fetchone()
+
+    @classmethod
+    def get_by_name(cls, name):
+        CURSOR.execute('SELECT * FROM owners WHERE name =?', (name,))
         return CURSOR.fetchone()
     
     @classmethod
