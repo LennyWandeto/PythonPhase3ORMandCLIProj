@@ -44,43 +44,44 @@ def start():
         elif choice == '4':
             woodwork_name = input('What is the woodwork\'s name? ')
             woodwork = Woodwork.get_by_name(woodwork_name)
-            if woodwork == []:
+            if woodwork == None:
                 print('The woodwork does not exist')
             carpenter_name = input('What is the carpenter\'s name? ')
             carpenter = Carpenter.get_by_name(carpenter_name)
-            if carpenter == []:
+            if carpenter == None:
                 print('The carpenter does not exist')
             Woodwork.assign_woodwork_to_carpenter(woodwork[0], carpenter[0])
         
         elif choice == '5':
             woodwork_name = input('What is the woodwork\'s name? ')
             woodwork = Woodwork.get_by_name(woodwork_name)
-            if woodwork == []:
+            if woodwork == None:
                 print('The woodwork does not exist')
             owner_name = input('What is the owner\'s name? ')
             owner = Owner.get_by_name(owner_name)
-            if owner == []:
+            if owner == None:
                 print('The owner does not exist')
             Woodwork.assign_woodwork_to_owner(woodwork[0], owner[0])
+
 
         
         elif choice == '6':
             carpenters = Carpenter.get_all()
-            if carpenters == []:
+            if carpenters == None:
                 print('There are no carpenters')
             for carpenter in carpenters:
                 print(carpenter)
         
         elif choice == '7':
             woodworks = Woodwork.get_all()
-            if woodworks == []:
+            if woodworks == None:
                 print('There are no woodworks')
             for woodwork in woodworks:
                 print(woodwork)
         
         elif choice == '8':
             owners = Owner.get_all()
-            if owners == []:
+            if owners == None:
                 print('There are no owners')
             for owner in owners:
                 print(owner)
@@ -88,10 +89,10 @@ def start():
         elif choice == '9':
             carpenter_name = input('What is the carpenter\'s name? ')
             carpenter = Carpenter.get_by_name(carpenter_name)
-            if carpenter == []:
+            if carpenter == None:
                 print('The carpenter does not exist')
             woodworks = Woodwork.get_by_carpenter(carpenter_name)
-            if woodworks == []:
+            if woodworks == None:
                 print('The carpenter does not have any woodworks')
             for woodwork in woodworks:
                 print(woodwork)
@@ -99,10 +100,10 @@ def start():
         elif choice == '10':
             owner_name = input('What is the owner\'s name? ')
             owner = Owner.get_by_name(owner_name)
-            if owner == []:
+            if owner == None:
                 print('The owner does not exist')
             woodworks = Woodwork.get_by_owner(owner_name)
-            if woodworks == []:
+            if woodworks == None:
                 print('The owner does not have any woodworks')
             for woodwork in woodworks:
                 print(woodwork)
