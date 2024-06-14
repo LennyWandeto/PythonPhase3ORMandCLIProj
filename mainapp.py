@@ -52,7 +52,7 @@ def start():
             Woodwork.assign_woodwork_to_carpenter(woodwork_id, carpenter_id)
         
         elif choice == '5':
-            woodwork_id = input('What is the woodwork\'s name? ')
+            woodwork_id = input('What is the woodwork\'s ID? ')
             if Woodwork.get_by_id(woodwork_id) == None:
                 print('The woodwork does not exist')
             owner_id = input('What is the owner\'s ID? ')
