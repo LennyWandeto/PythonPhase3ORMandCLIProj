@@ -6,7 +6,8 @@ from models.set import create_tables
 def start():
     create_tables()
     while True:
-        print('\n1. Create a new carpenter')
+        print("\n==== 🌲🪵🪵 WELCOME TO THE WOODWORK WORKSHOP 🪵🪵🌲 ====")
+        print('1. Create a new carpenter')
         print('2. Create a new woodwork')
         print('3. Create a new owner')
         print('4. Assign a woodwork to a carpenter')
@@ -42,26 +43,22 @@ def start():
             Owner(name, description)
         
         elif choice == '4':
-            woodwork_name = input('What is the woodwork\'s name? ')
-            woodwork = Woodwork.get_by_name(woodwork_name)
-            if woodwork == None:
+            woodwork_id = input('What is the woodwork\'s ID? ')
+            if Woodwork.get_by_id(woodwork_id) == None:
                 print('The woodwork does not exist')
-            carpenter_name = input('What is the carpenter\'s name? ')
-            carpenter = Carpenter.get_by_name(carpenter_name)
-            if carpenter == None:
+            carpenter_id = input('What is the carpenter\'s ID? ')
+            if Carpenter.get_by_id(carpenter_id) == None:
                 print('The carpenter does not exist')
-            Woodwork.assign_woodwork_to_carpenter(woodwork[0], carpenter[0])
+            Woodwork.assign_woodwork_to_carpenter(woodwork_id, carpenter_id)
         
         elif choice == '5':
-            woodwork_name = input('What is the woodwork\'s name? ')
-            woodwork = Woodwork.get_by_name(woodwork_name)
-            if woodwork == None:
+            woodwork_id = input('What is the woodwork\'s name? ')
+            if Woodwork.get_by_id(woodwork_id) == None:
                 print('The woodwork does not exist')
-            owner_name = input('What is the owner\'s name? ')
-            owner = Owner.get_by_name(owner_name)
-            if owner == None:
+            owner_id = input('What is the owner\'s ID? ')
+            if Owner.get_by_id(owner_id) == None:
                 print('The owner does not exist')
-            Woodwork.assign_woodwork_to_owner(woodwork[0], owner[0])
+            Woodwork.assign_woodwork_to_owner(woodwork_id, owner_id)
 
 
         
